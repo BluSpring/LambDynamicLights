@@ -13,7 +13,6 @@ import dev.lambdaurora.lambdynlights.LambDynLights;
 import me.jellysquid.mods.sodium.client.model.light.data.LightDataAccess;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
-import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
@@ -51,7 +50,7 @@ public abstract class ArrayLightDataCacheMixin extends LightDataAccess {
         // repack new dynamic lighting if necessary (no lightmaps, just straight light and luminance)
         if (dynamic_precise_light > block_light) {
             // I'm not super familiar with LambDynamicLights codebase, but this seems close to old lightmap behaviour
-            int dynamic_light = (int) (MathHelper.ceil(dynamic_precise_light));
+            int dynamic_light = (int) dynamic_precise_light;
             int dynamic_luminance = dynamic_light;  // if this is right then this could be optimized out
 
             // It would be nice if sodium provided LightDataAccess.wipeBL(), wipeLU(), etc for efficiency.
